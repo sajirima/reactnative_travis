@@ -87,6 +87,7 @@ app.post('/api/login', async (req: Request, res: Response): Promise<void> => {
       },
     });
   } catch (error) {
+    console.error(error);
     res.status(500).json({ error: (error as Error).message });
   }
 });
@@ -102,6 +103,7 @@ app.post('/api/register', async (req: Request, res: Response): Promise<void> => 
     );
     res.status(201).json({ success: true });
   } catch (error) {
+    console.error(error);
     res.status(500).json({ error: (error as Error).message });
   }
 });
@@ -141,6 +143,7 @@ app.get('/api/profile/:id', async (req: Request, res: Response): Promise<void> =
       totalCollected: Number(stats.total_collected ?? 0),
     });
   } catch (error) {
+    console.error(error);
     res.status(500).json({ error: (error as Error).message });
   }
 });
@@ -174,6 +177,7 @@ app.put('/api/profile', async (req: Request, res: Response): Promise<void> => {
       return;
     }
 
+    console.error(error);
     res.status(500).json({ error: error?.message ?? 'Unable to update profile.' });
   }
 });
@@ -207,6 +211,7 @@ app.put('/api/profile/password', async (req: Request, res: Response): Promise<vo
 
     res.json({ success: true });
   } catch (error) {
+    console.error(error);
     res.status(500).json({ error: (error as Error).message });
   }
 });
@@ -252,7 +257,12 @@ app.get('/api/dashboard', async (_req: Request, res: Response): Promise<void> =>
       WHERE payment_status = 'completed' AND payment_date >= DATE_SUB(CURDATE(), INTERVAL 6 DAY)
       GROUP BY DATE(payment_date)
     `);
-    const dailyByDate = new Map(dailyRows.map((r: any) => [r.day.toISOString().slice(0, 10), Number(r.total)]));
+    const dailyByDate = new Map(
+      dailyRows.map((r: any) => {
+        const key = r.day instanceof Date ? r.day.toISOString().slice(0, 10) : String(r.day).slice(0, 10);
+        return [key, Number(r.total)];
+      })
+    );
     const dailyCollection = Array.from({ length: 7 }, (_, i) => {
       const d = new Date();
       d.setDate(d.getDate() - (6 - i));
@@ -307,6 +317,7 @@ app.get('/api/dashboard', async (_req: Request, res: Response): Promise<void> =>
       paymentStatusDistribution,
     });
   } catch (error) {
+    console.error(error);
     res.status(500).json({ error: (error as Error).message });
   }
 });
@@ -316,6 +327,7 @@ app.get('/api/users', async (_req: Request, res: Response): Promise<void> => {
     const [rows] = await pool.query('SELECT * FROM users');
     res.json({ success: true, users: rows });
   } catch (error) {
+    console.error(error);
     res.status(500).json({ error: (error as Error).message });
   }
 });
