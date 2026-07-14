@@ -29,22 +29,8 @@ export default function LoginScreen() {
   const { width } = useWindowDimensions();
   const isWide = width >= 860;
 
-  // Refs para makapag-scroll papunta sa currently focused na field.
-  const scrollRef = useRef<ScrollView>(null);
   const emailRef = useRef<TextInput>(null);
   const passwordRef = useRef<TextInput>(null);
-
-  const scrollToInput = (node: TextInput | null) => {
-    if (!node || !scrollRef.current) return;
-    node.measureLayout(
-      // @ts-ignore - built-in scroll responder node, walang need ng findNodeHandle
-      scrollRef.current.getInnerViewNode(),
-      (_x: number, y: number) => {
-        scrollRef.current?.scrollTo({ y: Math.max(y - 24, 0), animated: true });
-      },
-      () => {},
-    );
-  };
 
   const handleLogin = async () => {
     if (!email.trim() || !password) {
@@ -70,7 +56,7 @@ export default function LoginScreen() {
             email: user.email,
           })
         );
-        router.replace('/');
+        router.replace('/dashboard');
       }
     } catch (error: any) {
       const message =
@@ -89,7 +75,6 @@ export default function LoginScreen() {
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
         keyboardVerticalOffset={Platform.OS === 'ios' ? 60 : 0}>
         <ScrollView
-          ref={scrollRef}
           contentContainerStyle={[styles.container, isWide && styles.containerWide]}
           keyboardShouldPersistTaps="handled"
           showsVerticalScrollIndicator={false}>
@@ -161,7 +146,6 @@ export default function LoginScreen() {
                 keyboardType="email-address"
                 returnKeyType="next"
                 onSubmitEditing={() => passwordRef.current?.focus()}
-                onFocus={() => scrollToInput(emailRef.current)}
               />
 
               <Text style={styles.label}>Password</Text>
@@ -176,7 +160,6 @@ export default function LoginScreen() {
                   secureTextEntry={!showPassword}
                   returnKeyType="done"
                   onSubmitEditing={handleLogin}
-                  onFocus={() => scrollToInput(passwordRef.current)}
                 />
                 <Pressable style={styles.eyeBtn} onPress={() => setShowPassword((s) => !s)}>
                   <Ionicons

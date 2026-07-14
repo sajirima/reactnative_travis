@@ -93,6 +93,10 @@ function CustomDrawerContent(props: DrawerContentComponentProps) {
   );
 }
 
+export const unstable_settings = {
+  initialRouteName: 'dashboard',
+};
+
 export default function DrawerLayout() {
   return (
     <Drawer

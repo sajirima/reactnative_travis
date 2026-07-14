@@ -1,11 +1,17 @@
+import Constants from 'expo-constants';
 import axios from 'axios';
 import { Alert, Platform } from 'react-native';
 
 const port = '3000';
 
+// Host na ginagamit ng phone para makonekta sa Expo dev server (Metro) -
+// gumagana ito kahit anong Wi-Fi network, dahil laging tumutugma sa
+// kasalukuyang koneksyon ng device sa dev machine.
+const debuggerHost = Constants.expoConfig?.hostUri?.split(':')[0];
+
 const configuredBaseUrl = process.env.EXPO_PUBLIC_API_BASE_URL?.trim();
 const defaultHost =
-  Platform.OS === 'android' ? '10.0.2.2' : Platform.OS === 'ios' ? 'localhost' : 'localhost';
+  debuggerHost ?? (Platform.OS === 'android' ? '10.0.2.2' : 'localhost');
 const baseURL = configuredBaseUrl ?? `http://${defaultHost}:${port}`;
 
 const api = axios.create({
