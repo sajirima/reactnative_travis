@@ -16,6 +16,15 @@ This is an [Expo](https://expo.dev) project created with [`create-expo-app`](htt
    npx expo start
    ```
 
+3. Start the API server in a second terminal
+
+   ```bash
+   npm run api
+   ```
+
+   If you are logging in from a physical device, set `EXPO_PUBLIC_API_BASE_URL` to the
+   machine running `api/server.ts`, for example `http://192.168.1.50:3000`.
+
 In the output, you'll find options to open the app in a
 
 - [development build](https://docs.expo.dev/develop/development-builds/introduction/)
