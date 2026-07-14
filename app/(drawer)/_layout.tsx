@@ -134,7 +134,7 @@ const styles = StyleSheet.create({
     width: 42,
     height: 42,
     borderRadius: 12,
-    backgroundColor: '#14b8a6',
+    backgroundColor: '#0d9488',
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -163,7 +163,7 @@ const styles = StyleSheet.create({
     position: 'relative',
   },
   navRowActive: {
-    backgroundColor: '#14b8a6',
+    backgroundColor: '#0d9488',
   },
   activeBar: {
     position: 'absolute',
@@ -172,7 +172,7 @@ const styles = StyleSheet.create({
     bottom: 8,
     width: 4,
     borderRadius: 2,
-    backgroundColor: '#14b8a6',
+    backgroundColor: '#0d9488',
   },
   navIcon: { marginRight: 14 },
   navLabel: { flex: 1, fontSize: 14.5, color: 'rgba(255,255,255,.8)', fontWeight: '500' },

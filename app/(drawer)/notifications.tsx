@@ -5,7 +5,7 @@ export default function NotificationsScreen() {
     <PlaceholderScreen
       icon="notifications-outline"
       title="Notifications"
-      description="Mga abiso at alerto tungkol sa system ay lalabas dito."
+      description="System notifications and alerts will appear here."
     />
   );
 }

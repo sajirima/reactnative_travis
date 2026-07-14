@@ -5,7 +5,7 @@ export default function ReportsScreen() {
     <PlaceholderScreen
       icon="bar-chart-outline"
       title="Collection Reports"
-      description="Mga ulat at summary ng koleksyon ng bayad ay lalabas dito."
+      description="Reports and summaries of payment collections will appear here."
     />
   );
 }

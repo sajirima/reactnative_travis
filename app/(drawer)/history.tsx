@@ -5,7 +5,7 @@ export default function HistoryScreen() {
     <PlaceholderScreen
       icon="time-outline"
       title="Payment History"
-      description="Kasaysayan ng mga naprosesong bayad ay ipapakita dito."
+      description="A history of processed payments will appear here."
     />
   );
 }

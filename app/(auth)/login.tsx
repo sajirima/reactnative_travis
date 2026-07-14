@@ -54,6 +54,8 @@ export default function LoginScreen() {
             full_name: user.full_name ?? user.name,
             username: user.username ?? '',
             email: user.email,
+            role: user.role ?? '',
+            status: user.status ?? '',
           })
         );
         router.replace('/dashboard');

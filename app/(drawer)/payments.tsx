@@ -5,7 +5,7 @@ export default function PaymentsScreen() {
     <PlaceholderScreen
       icon="card-outline"
       title="Payment Management"
-      description="Pamamahala ng mga bayad na multa at kaugnay na transaksyon ay lalabas dito."
+      description="Management of paid fines and related transactions will appear here."
     />
   );
 }

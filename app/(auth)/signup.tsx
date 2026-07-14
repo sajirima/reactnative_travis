@@ -24,7 +24,6 @@ export default function SignupScreen() {
   const [loading, setLoading] = useState(false);
 
   const handleSignup = async () => {
-    // Client-side validation muna bago tumawag sa API.
     if (!name.trim() || !email.trim() || !password || !confirmPassword) {
       Alert.alert('Missing Info', 'Please fill out all fields.');
       return;

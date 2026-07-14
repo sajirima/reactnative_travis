@@ -5,7 +5,7 @@ export default function ViolationsScreen() {
     <PlaceholderScreen
       icon="clipboard-outline"
       title="Traffic Violation Records"
-      description="Listahan ng mga naitalang traffic violations ay ipapakita dito."
+      description="A list of recorded traffic violations will appear here."
     />
   );
 }
